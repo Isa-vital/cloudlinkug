@@ -1,7 +1,21 @@
 @extends('layouts.public')
 
 @section('title', $page->title . ' — ' . ($siteSetting['site_name'] ?? 'Cloudlink IT Services'))
-@section('meta_description', $page->meta_description ?? '')
+@section('meta_description', $page->meta_description ?? Str::limit(strip_tags($page->content), 160))
+@section('og_type', 'article')
+@section('canonical', route('page.show', $page->slug))
+
+@push('schema')
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "{{ $page->title }}",
+    "url": "{{ route('page.show', $page->slug) }}",
+    "description": "{{ $page->meta_description ?? Str::limit(strip_tags($page->content), 200) }}"
+}
+</script>
+@endpush
 
 @section('content')
 

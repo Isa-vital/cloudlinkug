@@ -17,7 +17,11 @@ use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\Admin\BlogPostController;
+use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Route;
+
+// ── SEO Routes ──
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
 // ── Public Routes ──
 Route::get('/', [HomeController::class, 'index'])->name('home');

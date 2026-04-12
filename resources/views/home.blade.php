@@ -1,6 +1,27 @@
 @extends('layouts.public')
 
 @section('title', ($siteSetting['site_name'] ?? 'Cloudlink IT Services') . ' — ' . ($siteSetting['tagline'] ?? ''))
+@section('meta_description', $siteSetting['about_short'] ?? ($siteSetting['tagline'] ?? 'Leading IT solutions provider in Uganda offering consulting, software development, cybersecurity, and smart technology services.'))
+@section('og_type', 'website')
+@section('canonical', config('app.url'))
+@section('meta_keywords', 'IT services Uganda, IT consulting Kampala, software development Uganda, cybersecurity, EFRIS solutions, cloud computing, smart security, Cloudlink IT')
+
+@push('schema')
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "{{ $siteSetting['site_name'] ?? 'Cloudlink IT Services' }}",
+    "url": "{{ config('app.url') }}",
+    "description": "{{ $siteSetting['tagline'] ?? 'Powering Business Through Smart Technology' }}",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ config('app.url') }}/blog?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+    }
+}
+</script>
+@endpush
 
 @section('content')
 

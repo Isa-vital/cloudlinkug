@@ -1,7 +1,39 @@
 @extends('layouts.public')
 
 @section('title', 'Contact Us — ' . ($siteSetting['site_name'] ?? 'Cloudlink IT Services'))
-@section('meta_description', 'Get in touch with Cloudlink IT Services for a free consultation.')
+@section('meta_description', 'Get in touch with Cloudlink IT Services for a free IT consultation. Call {{ $siteSetting["phone"] ?? "+256 776 121 422" }} or visit us in Kampala, Uganda.')
+@section('og_type', 'website')
+@section('meta_keywords', 'contact Cloudlink, IT consultation Uganda, IT support Kampala, get a quote, Cloudlink phone number')
+
+@push('schema')
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact Cloudlink IT Services",
+    "url": "{{ route('contact.index') }}",
+    "description": "Get in touch with Cloudlink IT Services for a free consultation.",
+    "mainEntity": {
+        "@type": "LocalBusiness",
+        "name": "{{ $siteSetting['site_name'] ?? 'Cloudlink IT Services' }}",
+        "telephone": "{{ $siteSetting['phone'] ?? '' }}",
+        "email": "{{ $siteSetting['email'] ?? '' }}",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "{{ $siteSetting['address'] ?? '' }}",
+            "addressLocality": "Kampala",
+            "addressCountry": "UG"
+        },
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "08:00",
+            "closes": "18:00"
+        }
+    }
+}
+</script>
+@endpush
 
 @section('content')
 

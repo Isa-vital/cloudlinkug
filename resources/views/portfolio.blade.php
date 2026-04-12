@@ -1,7 +1,21 @@
 @extends('layouts.public')
 
 @section('title', 'Portfolio — ' . ($siteSetting['site_name'] ?? 'Cloudlink IT Services'))
-@section('meta_description', 'View our portfolio of successful IT projects across various industries.')
+@section('meta_description', 'View our portfolio of successful IT projects across various industries in Uganda and East Africa.')
+@section('og_type', 'website')
+@section('meta_keywords', 'IT portfolio Uganda, IT projects, software projects, technology solutions, case studies, Cloudlink projects')
+
+@push('schema')
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Portfolio — Cloudlink IT Services",
+    "url": "{{ route('portfolio.index') }}",
+    "description": "View our portfolio of successful IT projects across various industries."
+}
+</script>
+@endpush
 
 @section('content')
 

@@ -1,7 +1,33 @@
 @extends('layouts.public')
 
 @section('title', 'About Us — ' . ($siteSetting['site_name'] ?? 'Cloudlink IT Services'))
-@section('meta_description', $page->meta_description ?? 'Learn about Cloudlink IT Services')
+@section('meta_description', $page->meta_description ?? 'Learn about Cloudlink IT Services — a leading technology company in Uganda providing end-to-end IT solutions for businesses of all sizes.')
+@section('og_type', 'website')
+@section('meta_keywords', 'about Cloudlink IT, IT company Uganda, technology company Kampala, IT solutions provider, Uganda IT team')
+
+@push('schema')
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About Cloudlink IT Services",
+    "url": "{{ route('about') }}",
+    "description": "{{ $page->meta_description ?? 'Learn about Cloudlink IT Services' }}",
+    "mainEntity": {
+        "@type": "Organization",
+        "name": "{{ $siteSetting['site_name'] ?? 'Cloudlink IT Services' }}",
+        "url": "{{ config('app.url') }}",
+        "foundingDate": "2015",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "{{ $siteSetting['address'] ?? '' }}",
+            "addressLocality": "Kampala",
+            "addressCountry": "UG"
+        }
+    }
+}
+</script>
+@endpush
 
 @section('content')
 

@@ -2,6 +2,54 @@
 
 @section('title', $post->title . ' — Blog — ' . ($siteSetting['site_name'] ?? 'Cloudlink IT Services'))
 @section('meta_description', Str::limit($post->excerpt ?? strip_tags($post->body), 160))
+@section('og_type', 'article')
+@section('og_image', $post->featured_image ? asset('storage/' . $post->featured_image) : ($defaultTechImage ?? asset('images/og-default.jpg')))
+@section('canonical', route('blog.show', $post->slug))
+
+@push('schema')
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "{{ $post->title }}",
+    "url": "{{ route('blog.show', $post->slug) }}",
+    "description": "{{ Str::limit($post->excerpt ?? strip_tags($post->body), 200) }}",
+    "image": "{{ $post->featured_image ? asset('storage/' . $post->featured_image) : ($defaultTechImage ?? '') }}",
+    "datePublished": "{{ $post->published_at?->toIso8601String() }}",
+    "dateModified": "{{ $post->updated_at->toIso8601String() }}",
+    "author": {
+        "@type": "Person",
+        "name": "{{ $post->author }}"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "{{ $siteSetting['site_name'] ?? 'Cloudlink IT Services' }}",
+        "url": "{{ config('app.url') }}",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "{{ asset('images/og-default.jpg') }}"
+        }
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ route('blog.show', $post->slug) }}"
+    },
+    "articleSection": "{{ $post->category ?? 'Technology' }}",
+    "wordCount": {{ str_word_count(strip_tags($post->body ?? '')) }}
+}
+</script>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "{{ config('app.url') }}"},
+        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "{{ route('blog.index') }}"},
+        {"@type": "ListItem", "position": 3, "name": "{{ $post->title }}", "item": "{{ route('blog.show', $post->slug) }}"}
+    ]
+}
+</script>
+@endpush
 
 @section('content')
 

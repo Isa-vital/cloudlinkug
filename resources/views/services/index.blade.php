@@ -1,7 +1,35 @@
 @extends('layouts.public')
 
 @section('title', 'Our Services — ' . ($siteSetting['site_name'] ?? 'Cloudlink IT Services'))
-@section('meta_description', 'Explore our comprehensive range of IT services including consulting, security, software development, and more.')
+@section('meta_description', 'Explore our comprehensive range of IT services including consulting, cybersecurity, software development, EFRIS solutions, solar installations, and more in Uganda.')
+@section('og_type', 'website')
+@section('meta_keywords', 'IT services, IT consulting Uganda, cybersecurity, software development, EFRIS solutions, solar installation, smart security, networking, cloud computing')
+
+@push('schema')
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "IT Services by Cloudlink",
+    "url": "{{ route('services.index') }}",
+    "numberOfItems": {{ $services->count() }},
+    "itemListElement": [
+        @foreach($services as $idx => $svc)
+        {
+            "@type": "ListItem",
+            "position": {{ $idx + 1 }},
+            "item": {
+                "@type": "Service",
+                "name": "{{ $svc->title }}",
+                "url": "{{ route('services.show', $svc->slug) }}",
+                "description": "{{ Str::limit($svc->description, 120) }}"
+            }
+        }@if(!$loop->last),@endif
+        @endforeach
+    ]
+}
+</script>
+@endpush
 
 @section('content')
 

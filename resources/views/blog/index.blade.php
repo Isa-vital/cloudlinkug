@@ -1,7 +1,26 @@
 @extends('layouts.public')
 
 @section('title', 'Blog — ' . ($siteSetting['site_name'] ?? 'Cloudlink IT Services'))
-@section('meta_description', 'Read the latest insights on IT solutions, technology trends, and digital transformation from Cloudlink IT Services.')
+@section('meta_description', 'Read the latest insights on IT solutions, technology trends, cybersecurity tips, and digital transformation from Cloudlink IT Services Uganda.')
+@section('og_type', 'website')
+@section('meta_keywords', 'IT blog Uganda, technology news, cybersecurity tips, digital transformation, cloud computing, EFRIS Uganda, IT insights')
+
+@push('schema')
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Cloudlink IT Services Blog",
+    "url": "{{ route('blog.index') }}",
+    "description": "Latest insights on IT solutions, technology trends, and digital transformation.",
+    "publisher": {
+        "@type": "Organization",
+        "name": "{{ $siteSetting['site_name'] ?? 'Cloudlink IT Services' }}",
+        "url": "{{ config('app.url') }}"
+    }
+}
+</script>
+@endpush
 
 @section('content')
 

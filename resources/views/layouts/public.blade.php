@@ -5,7 +5,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="@yield('meta_description', $siteSetting['tagline'] ?? 'Powering Business Through Smart Technology')">
+    <meta name="keywords" content="@yield('meta_keywords', 'IT services Uganda, IT consulting Kampala, cloud solutions, cybersecurity, software development, EFRIS, smart security, Cloudlink')">
+    <meta name="author" content="{{ $siteSetting['site_name'] ?? 'Cloudlink IT Services' }}">
+    <meta name="robots" content="@yield('meta_robots', 'index, follow')">
     <title>@yield('title', $siteSetting['site_name'] ?? 'Cloudlink IT Services')</title>
+    <link rel="canonical" href="@yield('canonical', url()->current())">
+
+    {{-- Open Graph / Facebook --}}
+    <meta property="og:type" content="@yield('og_type', 'website')">
+    <meta property="og:url" content="@yield('canonical', url()->current())">
+    <meta property="og:title" content="@yield('title', $siteSetting['site_name'] ?? 'Cloudlink IT Services')">
+    <meta property="og:description" content="@yield('meta_description', $siteSetting['tagline'] ?? 'Powering Business Through Smart Technology')">
+    <meta property="og:image" content="@yield('og_image', asset('images/og-default.jpg'))">
+    <meta property="og:site_name" content="{{ $siteSetting['site_name'] ?? 'Cloudlink IT Services' }}">
+    <meta property="og:locale" content="en_UG">
+
+    {{-- Twitter Card --}}
+    <meta name="twitter:card" content="@yield('twitter_card', 'summary_large_image')">
+    <meta name="twitter:title" content="@yield('title', $siteSetting['site_name'] ?? 'Cloudlink IT Services')">
+    <meta name="twitter:description" content="@yield('meta_description', $siteSetting['tagline'] ?? 'Powering Business Through Smart Technology')">
+    <meta name="twitter:image" content="@yield('og_image', asset('images/og-default.jpg'))">
+
+    {{-- Structured Data — Organization (sitewide) --}}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "{{ $siteSetting['site_name'] ?? 'Cloudlink IT Services' }}",
+        "description": "{{ $siteSetting['tagline'] ?? 'Powering Business Through Smart Technology' }}",
+        "url": "{{ config('app.url') }}",
+        "logo": "{{ asset('images/og-default.jpg') }}",
+        "telephone": "{{ $siteSetting['phone'] ?? '' }}",
+        "email": "{{ $siteSetting['email'] ?? '' }}",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "{{ $siteSetting['address'] ?? 'Plot 24, Kampala Road' }}",
+            "addressLocality": "Kampala",
+            "addressCountry": "UG"
+        },
+        "sameAs": [
+            @if(!empty($siteSetting['facebook']))"{{ $siteSetting['facebook'] }}"@endif
+            @if(!empty($siteSetting['twitter'])),  "{{ $siteSetting['twitter'] }}"@endif
+            @if(!empty($siteSetting['instagram'])),  "{{ $siteSetting['instagram'] }}"@endif
+            @if(!empty($siteSetting['linkedin'])),  "{{ $siteSetting['linkedin'] }}"@endif
+        ]
+    }
+    </script>
+    @stack('schema')
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>

@@ -1,2 +1,11 @@
+# Cloudlink IT Services — cloudlinkug.com
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /dashboard
+Disallow: /profile
+Disallow: /login
+Disallow: /register
+
+Sitemap: https://cloudlinkug.com/sitemap.xml
