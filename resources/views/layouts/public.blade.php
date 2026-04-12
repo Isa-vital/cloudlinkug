@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="4xY43dgpGEnjzOWNtr9kodZF9QCOT99vu_TcbbSpIik" />
     <meta name="description" content="@yield('meta_description', $siteSetting['tagline'] ?? 'Powering Business Through Smart Technology')">
     <meta name="keywords" content="@yield('meta_keywords', 'IT services Uganda, IT consulting Kampala, cloud solutions, cybersecurity, software development, EFRIS, smart security, Cloudlink')">
     <meta name="author" content="{{ $siteSetting['site_name'] ?? 'Cloudlink IT Services' }}">
