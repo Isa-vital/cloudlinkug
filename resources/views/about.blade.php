@@ -8,7 +8,7 @@
 @push('schema')
 <script type="application/ld+json">
     {
-        "@context": "https://schema.org",
+        "@@context": "https://schema.org",
         "@type": "AboutPage",
         "name": "About Cloudlink IT Services",
         "url": "{{ route('about') }}",

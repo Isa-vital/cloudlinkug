@@ -8,7 +8,7 @@
 @push('schema')
 <script type="application/ld+json">
     {
-        "@context": "https://schema.org",
+        "@@context": "https://schema.org",
         "@type": "CollectionPage",
         "name": "Portfolio — Cloudlink IT Services",
         "url": "{{ route('portfolio.index') }}",

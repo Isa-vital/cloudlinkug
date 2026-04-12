@@ -29,7 +29,7 @@
     {{-- Structured Data — Organization (sitewide) --}}
     <script type="application/ld+json">
         {
-            "@context": "https://schema.org",
+            "@@context": "https://schema.org",
             "@type": "LocalBusiness",
             "name": "{{ $siteSetting['site_name'] ?? 'Cloudlink IT Services' }}",
             "description": "{{ $siteSetting['tagline'] ?? 'Powering Business Through Smart Technology' }}",

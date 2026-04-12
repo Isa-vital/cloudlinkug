@@ -9,7 +9,7 @@
 @push('schema')
 <script type="application/ld+json">
     {
-        "@context": "https://schema.org",
+        "@@context": "https://schema.org",
         "@type": "WebSite",
         "name": "{{ $siteSetting['site_name'] ?? 'Cloudlink IT Services' }}",
         "url": "{{ config('app.url') }}",

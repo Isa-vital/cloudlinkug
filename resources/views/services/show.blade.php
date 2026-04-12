@@ -9,7 +9,7 @@
 @push('schema')
 <script type="application/ld+json">
     {
-        "@context": "https://schema.org",
+        "@@context": "https://schema.org",
         "@type": "Service",
         "name": "{{ $service->title }}",
         "url": "{{ route('services.show', $service->slug) }}",
@@ -34,7 +34,7 @@
 </script>
 <script type="application/ld+json">
     {
-        "@context": "https://schema.org",
+        "@@context": "https://schema.org",
         "@type": "BreadcrumbList",
         "itemListElement": [{
                 "@type": "ListItem",
