@@ -7,13 +7,13 @@
 
 @push('schema')
 <script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": "Portfolio — Cloudlink IT Services",
-    "url": "{{ route('portfolio.index') }}",
-    "description": "View our portfolio of successful IT projects across various industries."
-}
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Portfolio — Cloudlink IT Services",
+        "url": "{{ route('portfolio.index') }}",
+        "description": "View our portfolio of successful IT projects across various industries."
+    }
 </script>
 @endpush
 

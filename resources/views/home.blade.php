@@ -8,18 +8,18 @@
 
 @push('schema')
 <script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "{{ $siteSetting['site_name'] ?? 'Cloudlink IT Services' }}",
-    "url": "{{ config('app.url') }}",
-    "description": "{{ $siteSetting['tagline'] ?? 'Powering Business Through Smart Technology' }}",
-    "potentialAction": {
-        "@type": "SearchAction",
-        "target": "{{ config('app.url') }}/blog?q={search_term_string}",
-        "query-input": "required name=search_term_string"
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "{{ $siteSetting['site_name'] ?? 'Cloudlink IT Services' }}",
+        "url": "{{ config('app.url') }}",
+        "description": "{{ $siteSetting['tagline'] ?? 'Powering Business Through Smart Technology' }}",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "{{ config('app.url') }}/blog?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
     }
-}
 </script>
 @endpush
 

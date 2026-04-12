@@ -7,18 +7,18 @@
 
 @push('schema')
 <script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "Blog",
-    "name": "Cloudlink IT Services Blog",
-    "url": "{{ route('blog.index') }}",
-    "description": "Latest insights on IT solutions, technology trends, and digital transformation.",
-    "publisher": {
-        "@type": "Organization",
-        "name": "{{ $siteSetting['site_name'] ?? 'Cloudlink IT Services' }}",
-        "url": "{{ config('app.url') }}"
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Cloudlink IT Services Blog",
+        "url": "{{ route('blog.index') }}",
+        "description": "Latest insights on IT solutions, technology trends, and digital transformation.",
+        "publisher": {
+            "@type": "Organization",
+            "name": "{{ $siteSetting['site_name'] ?? 'Cloudlink IT Services' }}",
+            "url": "{{ config('app.url') }}"
+        }
     }
-}
 </script>
 @endpush
 

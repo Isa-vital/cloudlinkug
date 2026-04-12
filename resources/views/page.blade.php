@@ -7,13 +7,13 @@
 
 @push('schema')
 <script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "{{ $page->title }}",
-    "url": "{{ route('page.show', $page->slug) }}",
-    "description": "{{ $page->meta_description ?? Str::limit(strip_tags($page->content), 200) }}"
-}
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "{{ $page->title }}",
+        "url": "{{ route('page.show', $page->slug) }}",
+        "description": "{{ $page->meta_description ?? Str::limit(strip_tags($page->content), 200) }}"
+    }
 </script>
 @endpush
 

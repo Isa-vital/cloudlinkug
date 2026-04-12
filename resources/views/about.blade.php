@@ -7,25 +7,25 @@
 
 @push('schema')
 <script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "AboutPage",
-    "name": "About Cloudlink IT Services",
-    "url": "{{ route('about') }}",
-    "description": "{{ $page->meta_description ?? 'Learn about Cloudlink IT Services' }}",
-    "mainEntity": {
-        "@type": "Organization",
-        "name": "{{ $siteSetting['site_name'] ?? 'Cloudlink IT Services' }}",
-        "url": "{{ config('app.url') }}",
-        "foundingDate": "2015",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "{{ $siteSetting['address'] ?? '' }}",
-            "addressLocality": "Kampala",
-            "addressCountry": "UG"
+    {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "name": "About Cloudlink IT Services",
+        "url": "{{ route('about') }}",
+        "description": "{{ $page->meta_description ?? 'Learn about Cloudlink IT Services' }}",
+        "mainEntity": {
+            "@type": "Organization",
+            "name": "{{ $siteSetting['site_name'] ?? 'Cloudlink IT Services' }}",
+            "url": "{{ config('app.url') }}",
+            "foundingDate": "2015",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "{{ $siteSetting['address'] ?? '' }}",
+                "addressLocality": "Kampala",
+                "addressCountry": "UG"
+            }
         }
     }
-}
 </script>
 @endpush
 

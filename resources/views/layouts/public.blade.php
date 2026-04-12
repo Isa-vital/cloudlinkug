@@ -28,28 +28,33 @@
 
     {{-- Structured Data — Organization (sitewide) --}}
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "{{ $siteSetting['site_name'] ?? 'Cloudlink IT Services' }}",
-        "description": "{{ $siteSetting['tagline'] ?? 'Powering Business Through Smart Technology' }}",
-        "url": "{{ config('app.url') }}",
-        "logo": "{{ asset('images/og-default.jpg') }}",
-        "telephone": "{{ $siteSetting['phone'] ?? '' }}",
-        "email": "{{ $siteSetting['email'] ?? '' }}",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "{{ $siteSetting['address'] ?? 'Plot 24, Kampala Road' }}",
-            "addressLocality": "Kampala",
-            "addressCountry": "UG"
-        },
-        "sameAs": [
-            @if(!empty($siteSetting['facebook']))"{{ $siteSetting['facebook'] }}"@endif
-            @if(!empty($siteSetting['twitter'])),  "{{ $siteSetting['twitter'] }}"@endif
-            @if(!empty($siteSetting['instagram'])),  "{{ $siteSetting['instagram'] }}"@endif
-            @if(!empty($siteSetting['linkedin'])),  "{{ $siteSetting['linkedin'] }}"@endif
-        ]
-    }
+        {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "{{ $siteSetting['site_name'] ?? 'Cloudlink IT Services' }}",
+            "description": "{{ $siteSetting['tagline'] ?? 'Powering Business Through Smart Technology' }}",
+            "url": "{{ config('app.url') }}",
+            "logo": "{{ asset('images/og-default.jpg') }}",
+            "telephone": "{{ $siteSetting['phone'] ?? '' }}",
+            "email": "{{ $siteSetting['email'] ?? '' }}",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "{{ $siteSetting['address'] ?? 'Plot 24, Kampala Road' }}",
+                "addressLocality": "Kampala",
+                "addressCountry": "UG"
+            },
+            "sameAs": [
+                @if(!empty($siteSetting['facebook']))
+                "{{ $siteSetting['facebook'] }}"
+                @endif
+                @if(!empty($siteSetting['twitter'])), "{{ $siteSetting['twitter'] }}"
+                @endif
+                @if(!empty($siteSetting['instagram'])), "{{ $siteSetting['instagram'] }}"
+                @endif
+                @if(!empty($siteSetting['linkedin'])), "{{ $siteSetting['linkedin'] }}"
+                @endif
+            ]
+        }
     </script>
     @stack('schema')
 

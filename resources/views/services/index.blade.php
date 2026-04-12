@@ -7,27 +7,35 @@
 
 @push('schema')
 <script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "name": "IT Services by Cloudlink",
-    "url": "{{ route('services.index') }}",
-    "numberOfItems": {{ $services->count() }},
-    "itemListElement": [
-        @foreach($services as $idx => $svc)
-        {
-            "@type": "ListItem",
-            "position": {{ $idx + 1 }},
-            "item": {
-                "@type": "Service",
-                "name": "{{ $svc->title }}",
-                "url": "{{ route('services.show', $svc->slug) }}",
-                "description": "{{ Str::limit($svc->description, 120) }}"
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "IT Services by Cloudlink",
+        "url": "{{ route('services.index') }}",
+        "numberOfItems": {
+            {
+                $services - > count()
             }
-        }@if(!$loop->last),@endif
-        @endforeach
-    ]
-}
+        },
+        "itemListElement": [
+            @foreach($services as $idx => $svc) {
+                "@type": "ListItem",
+                "position": {
+                    {
+                        $idx + 1
+                    }
+                },
+                "item": {
+                    "@type": "Service",
+                    "name": "{{ $svc->title }}",
+                    "url": "{{ route('services.show', $svc->slug) }}",
+                    "description": "{{ Str::limit($svc->description, 120) }}"
+                }
+            }
+            @if(!$loop - > last), @endif
+            @endforeach
+        ]
+    }
 </script>
 @endpush
 
