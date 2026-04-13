@@ -9,52 +9,39 @@
 @push('schema')
 <script type="application/ld+json">
     {
-        "@@context": "https://schema.org",
-        "@type": "Service",
-        "name": "{{ $service->title }}",
-        "url": "{{ route('services.show', $service->slug) }}",
-        "description": "{{ Str::limit($service->description, 250) }}",
-        "provider": {
-            "@type": "LocalBusiness",
-            "name": "{{ $siteSetting['site_name'] ?? 'Cloudlink IT Services' }}",
-            "url": "{{ config('app.url') }}",
-            "telephone": "{{ $siteSetting['phone'] ?? '' }}",
-            "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "{{ $siteSetting['address'] ?? '' }}",
-                "addressLocality": "Kampala",
-                "addressCountry": "UG"
-            }
-        },
-        "areaServed": {
-            "@type": "Country",
-            "name": "Uganda"
-        }
+        !!json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'Service',
+            'name' => $service - > title,
+            'url' => route('services.show', $service - > slug),
+            'description' => Str::limit($service - > description, 250),
+            'provider' => [
+                '@type' => 'LocalBusiness',
+                'name' => $siteSetting['site_name'] ?? 'Cloudlink IT Services',
+                'url' => config('app.url'),
+                'telephone' => $siteSetting['phone'] ?? '',
+                'address' => [
+                    '@type' => 'PostalAddress',
+                    'streetAddress' => $siteSetting['address'] ?? '',
+                    'addressLocality' => 'Kampala',
+                    'addressCountry' => 'UG',
+                ],
+            ],
+            'areaServed' => ['@type' => 'Country', 'name' => 'Uganda'],
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!
     }
 </script>
 <script type="application/ld+json">
     {
-        "@@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [{
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "{{ config('app.url') }}"
-            },
-            {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Services",
-                "item": "{{ route('services.index') }}"
-            },
-            {
-                "@type": "ListItem",
-                "position": 3,
-                "name": "{{ $service->title }}",
-                "item": "{{ route('services.show', $service->slug) }}"
-            }
-        ]
+        !!json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'BreadcrumbList',
+            'itemListElement' => [
+                ['@type' => 'ListItem', 'position' => 1, 'name' => 'Home', 'item' => config('app.url')],
+                ['@type' => 'ListItem', 'position' => 2, 'name' => 'Services', 'item' => route('services.index')],
+                ['@type' => 'ListItem', 'position' => 3, 'name' => $service - > title, 'item' => route('services.show', $service - > slug)],
+            ],
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!
     }
 </script>
 @endpush

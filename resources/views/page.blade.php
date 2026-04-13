@@ -8,11 +8,13 @@
 @push('schema')
 <script type="application/ld+json">
     {
-        "@@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "{{ $page->title }}",
-        "url": "{{ route('page.show', $page->slug) }}",
-        "description": "{{ $page->meta_description ?? Str::limit(strip_tags($page->content), 200) }}"
+        !!json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'WebPage',
+            'name' => $page - > title,
+            'url' => route('page.show', $page - > slug),
+            'description' => $page - > meta_description ?? Str::limit(strip_tags($page - > content), 200),
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!
     }
 </script>
 @endpush
