@@ -23,8 +23,16 @@
             theme: {
                 extend: {
                     colors: {
-                        yellow: { 400: '#FFC300', 500: '#FFC300', 600: '#e6b000' },
-                        sky: { 400: '#38BDF8', 500: '#38BDF8', 600: '#0ea5e9' },
+                        yellow: {
+                            400: '#FFC300',
+                            500: '#FFC300',
+                            600: '#e6b000'
+                        },
+                        sky: {
+                            400: '#38BDF8',
+                            500: '#38BDF8',
+                            600: '#0ea5e9'
+                        },
                     },
                     fontFamily: {
                         heading: ['"Barlow Condensed"', 'sans-serif'],

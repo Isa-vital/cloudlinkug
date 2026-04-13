@@ -110,11 +110,17 @@
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($team as $member)
-            <div class="text-center group">
-                <div class="w-full h-72 bg-cover bg-center mb-4" style="background-image: url('{{ $member->photo_path ? asset('storage/' . $member->photo_path) : 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&sig=' . $member->id }}')"></div>
-                <h3 class="font-heading font-bold text-xl text-gray-900 uppercase">{{ $member->name }}</h3>
-                <p class="text-sky-500 font-semibold text-sm uppercase tracking-wide mb-2">{{ $member->role }}</p>
-                <p class="text-gray-600 text-sm px-4">{{ $member->bio }}</p>
+            <div class="group bg-white border border-gray-100 shadow-sm hover:shadow-lg transition overflow-hidden">
+                <div class="relative w-full aspect-[3/4] overflow-hidden">
+                    <img src="{{ $member->photo_path ? asset('storage/' . $member->photo_path) : 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=500&fit=crop&sig=' . $member->id }}"
+                        alt="{{ $member->name }}"
+                        class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="p-5 text-center">
+                    <h3 class="font-heading font-bold text-xl text-gray-900 uppercase">{{ $member->name }}</h3>
+                    <p class="text-sky-500 font-semibold text-sm uppercase tracking-wide mb-3">{{ $member->role }}</p>
+                    <p class="text-gray-600 text-sm leading-relaxed">{{ $member->bio }}</p>
+                </div>
             </div>
             @endforeach
         </div>

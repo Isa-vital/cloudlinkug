@@ -37,9 +37,9 @@
             </label>
 
             @if (Route::has('password.request'))
-                <a class="text-sm text-sky-500 hover:text-sky-600 font-medium transition" href="{{ route('password.request') }}">
-                    Forgot password?
-                </a>
+            <a class="text-sm text-sky-500 hover:text-sky-600 font-medium transition" href="{{ route('password.request') }}">
+                Forgot password?
+            </a>
             @endif
         </div>
 
