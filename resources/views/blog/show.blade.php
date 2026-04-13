@@ -35,11 +35,7 @@
             "@id": "{{ route('blog.show', $post->slug) }}"
         },
         "articleSection": "{{ $post->category ?? 'Technology' }}",
-        "wordCount": {
-            {
-                str_word_count(strip_tags($post - > body ?? ''))
-            }
-        }
+        "wordCount": {{ str_word_count(strip_tags($post->body ?? '')) }}
     }
 </script>
 <script type="application/ld+json">

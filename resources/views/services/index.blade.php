@@ -12,27 +12,19 @@
         "@type": "ItemList",
         "name": "IT Services by Cloudlink",
         "url": "{{ route('services.index') }}",
-        "numberOfItems": {
-            {
-                $services - > count()
-            }
-        },
+        "numberOfItems": {{ $services->count() }},
         "itemListElement": [
-            @foreach($services as $idx => $svc) {
+            @foreach($services as $idx => $svc)
+            {
                 "@type": "ListItem",
-                "position": {
-                    {
-                        $idx + 1
-                    }
-                },
+                "position": {{ $idx + 1 }},
                 "item": {
                     "@type": "Service",
                     "name": "{{ $svc->title }}",
                     "url": "{{ route('services.show', $svc->slug) }}",
                     "description": "{{ Str::limit($svc->description, 120) }}"
                 }
-            }
-            @if(!$loop - > last), @endif
+            }@if(!$loop->last),@endif
             @endforeach
         ]
     }
