@@ -7,15 +7,13 @@
 
 @push('schema')
 <script type="application/ld+json">
-    {
-        !!json_encode([
-            '@context' => 'https://schema.org',
-            '@type' => 'CollectionPage',
-            'name' => 'Portfolio — Cloudlink IT Services',
-            'url' => route('portfolio.index'),
-            'description' => 'View our portfolio of successful IT projects across various industries.',
-        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!
-    }
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'CollectionPage',
+        'name' => 'Portfolio — Cloudlink IT Services',
+        'url' => route('portfolio.index'),
+        'description' => 'View our portfolio of successful IT projects across various industries.',
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
 </script>
 @endpush
 

@@ -7,33 +7,31 @@
 
 @push('schema')
 <script type="application/ld+json">
-    {
-        !!json_encode([
-            '@context' => 'https://schema.org',
-            '@type' => 'ContactPage',
-            'name' => 'Contact Cloudlink IT Services',
-            'url' => route('contact.index'),
-            'description' => 'Get in touch with Cloudlink IT Services for a free consultation.',
-            'mainEntity' => [
-                '@type' => 'LocalBusiness',
-                'name' => $siteSetting['site_name'] ?? 'Cloudlink IT Services',
-                'telephone' => $siteSetting['phone'] ?? '',
-                'email' => $siteSetting['email'] ?? '',
-                'address' => [
-                    '@type' => 'PostalAddress',
-                    'streetAddress' => $siteSetting['address'] ?? '',
-                    'addressLocality' => 'Kampala',
-                    'addressCountry' => 'UG',
-                ],
-                'openingHoursSpecification' => [
-                    '@type' => 'OpeningHoursSpecification',
-                    'dayOfWeek' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-                    'opens' => '08:00',
-                    'closes' => '18:00',
-                ],
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'ContactPage',
+        'name' => 'Contact Cloudlink IT Services',
+        'url' => route('contact.index'),
+        'description' => 'Get in touch with Cloudlink IT Services for a free consultation.',
+        'mainEntity' => [
+            '@type' => 'LocalBusiness',
+            'name' => $siteSetting['site_name'] ?? 'Cloudlink IT Services',
+            'telephone' => $siteSetting['phone'] ?? '',
+            'email' => $siteSetting['email'] ?? '',
+            'address' => [
+                '@type' => 'PostalAddress',
+                'streetAddress' => $siteSetting['address'] ?? '',
+                'addressLocality' => 'Kampala',
+                'addressCountry' => 'UG',
             ],
-        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!
-    }
+            'openingHoursSpecification' => [
+                '@type' => 'OpeningHoursSpecification',
+                'dayOfWeek' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                'opens' => '08:00',
+                'closes' => '18:00',
+            ],
+        ],
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
 </script>
 @endpush
 
@@ -173,6 +171,32 @@
                 </div>
             </div>
         </div>
+
+        {{-- Customer Support Chat moved to sitewide floating widget in layouts/public.blade.php --}}
+        {{--
+        <div class="mt-16 bg-gray-50 border border-gray-200 shadow-sm overflow-hidden">
+            <div class="px-6 py-6 md:px-8 border-b border-gray-200 bg-white">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-12 h-12 bg-sky-500 text-white flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-headset text-lg"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-heading font-extrabold text-gray-900 uppercase">Live Customer Support</h2>
+                        <p class="text-gray-600 text-sm">Chat with our support assistant for quick answers about services, pricing, and technical support.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-2 md:p-4 bg-white">
+                <iframe
+                    src="https://www.chatbase.co/chatbot-iframe/I25rULrzys_C9qDzZDWTk"
+                    width="100%"
+                    style="height: 100%; min-height: 700px"
+                    frameborder="0"
+                    title="Cloudlink customer support chatbot"
+                ></iframe>
+            </div>
+        </div>
+        --}}
 
         {{-- Google Maps --}}
         @if(!empty($siteSetting['google_maps_embed']))

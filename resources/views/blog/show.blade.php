@@ -8,41 +8,37 @@
 
 @push('schema')
 <script type="application/ld+json">
-    {
-        !!json_encode([
-            '@context' => 'https://schema.org',
-            '@type' => 'BlogPosting',
-            'headline' => $post - > title,
-            'url' => route('blog.show', $post - > slug),
-            'description' => Str::limit($post - > excerpt ?? strip_tags($post - > body), 200),
-            'image' => $post - > featured_image ? asset('storage/'.$post - > featured_image) : ($defaultTechImage ?? ''),
-            'datePublished' => $post - > published_at ? - > toIso8601String(),
-            'dateModified' => $post - > updated_at - > toIso8601String(),
-            'author' => ['@type' => 'Person', 'name' => $post - > author],
-            'publisher' => [
-                '@type' => 'Organization',
-                'name' => $siteSetting['site_name'] ?? 'Cloudlink IT Services',
-                'url' => config('app.url'),
-                'logo' => ['@type' => 'ImageObject', 'url' => asset('images/og-default.jpg')],
-            ],
-            'mainEntityOfPage' => ['@type' => 'WebPage', '@id' => route('blog.show', $post - > slug)],
-            'articleSection' => $post - > category ?? 'Technology',
-            'wordCount' => str_word_count(strip_tags($post - > body ?? '')),
-        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!
-    }
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'BlogPosting',
+        'headline' => $post->title,
+        'url' => route('blog.show', $post->slug),
+        'description' => Str::limit($post->excerpt ?? strip_tags($post->body), 200),
+        'image' => $post->featured_image ? asset('storage/' . $post->featured_image) : ($defaultTechImage ?? ''),
+        'datePublished' => $post->published_at?->toIso8601String(),
+        'dateModified' => $post->updated_at->toIso8601String(),
+        'author' => ['@type' => 'Person', 'name' => $post->author],
+        'publisher' => [
+            '@type' => 'Organization',
+            'name' => $siteSetting['site_name'] ?? 'Cloudlink IT Services',
+            'url' => config('app.url'),
+            'logo' => ['@type' => 'ImageObject', 'url' => asset('images/og-default.jpg')],
+        ],
+        'mainEntityOfPage' => ['@type' => 'WebPage', '@id' => route('blog.show', $post->slug)],
+        'articleSection' => $post->category ?? 'Technology',
+        'wordCount' => str_word_count(strip_tags($post->body ?? '')),
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
 </script>
 <script type="application/ld+json">
-    {
-        !!json_encode([
-            '@context' => 'https://schema.org',
-            '@type' => 'BreadcrumbList',
-            'itemListElement' => [
-                ['@type' => 'ListItem', 'position' => 1, 'name' => 'Home', 'item' => config('app.url')],
-                ['@type' => 'ListItem', 'position' => 2, 'name' => 'Blog', 'item' => route('blog.index')],
-                ['@type' => 'ListItem', 'position' => 3, 'name' => $post - > title, 'item' => route('blog.show', $post - > slug)],
-            ],
-        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!
-    }
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => [
+            ['@type' => 'ListItem', 'position' => 1, 'name' => 'Home', 'item' => config('app.url')],
+            ['@type' => 'ListItem', 'position' => 2, 'name' => 'Blog', 'item' => route('blog.index')],
+            ['@type' => 'ListItem', 'position' => 3, 'name' => $post->title, 'item' => route('blog.show', $post->slug)],
+        ],
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
 </script>
 @endpush
 

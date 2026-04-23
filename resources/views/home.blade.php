@@ -8,21 +8,18 @@
 
 @push('schema')
 <script type="application/ld+json">
-    {
-        !!json_encode([
-            '@context' => 'https://schema.org',
-            '@type' => 'WebSite',
-            'name' => $siteSetting['site_name'] ?? 'Cloudlink IT Services',
-            'url' => config('app.url'),
-            'description' => $siteSetting['tagline'] ?? 'Powering Business Through Smart Technology',
-            'potentialAction' => [
-                '@type' => 'SearchAction',
-                'target' => config('app.url').
-                '/blog?q={search_term_string}',
-                'query-input' => 'required name=search_term_string',
-            ],
-        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!
-    }
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'WebSite',
+        'name' => $siteSetting['site_name'] ?? 'Cloudlink IT Services',
+        'url' => config('app.url'),
+        'description' => $siteSetting['tagline'] ?? 'Powering Business Through Smart Technology',
+        'potentialAction' => [
+            '@type' => 'SearchAction',
+            'target' => config('app.url') . '/blog?q={search_term_string}',
+            'query-input' => 'required name=search_term_string',
+        ],
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
 </script>
 @endpush
 

@@ -7,25 +7,23 @@
 
 @push('schema')
 <script type="application/ld+json">
-    {
-        !!json_encode([
-            '@context' => 'https://schema.org',
-            '@type' => 'ItemList',
-            'name' => 'IT Services by Cloudlink',
-            'url' => route('services.index'),
-            'numberOfItems' => $services - > count(),
-            'itemListElement' => $services - > map(fn($svc, $idx) => [
-                '@type' => 'ListItem',
-                'position' => $idx + 1,
-                'item' => [
-                    '@type' => 'Service',
-                    'name' => $svc - > title,
-                    'url' => route('services.show', $svc - > slug),
-                    'description' => Str::limit($svc - > description, 120),
-                ],
-            ]),
-        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!
-    }
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'ItemList',
+        'name' => 'IT Services by Cloudlink',
+        'url' => route('services.index'),
+        'numberOfItems' => $services->count(),
+        'itemListElement' => $services->values()->map(fn ($svc, $idx) => [
+            '@type' => 'ListItem',
+            'position' => $idx + 1,
+            'item' => [
+                '@type' => 'Service',
+                'name' => $svc->title,
+                'url' => route('services.show', $svc->slug),
+                'description' => Str::limit($svc->description, 120),
+            ],
+        ])->all(),
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
 </script>
 @endpush
 

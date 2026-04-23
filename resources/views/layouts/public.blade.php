@@ -29,30 +29,28 @@
 
     {{-- Structured Data — Organization (sitewide) --}}
     <script type="application/ld+json">
-        {
-            !!json_encode(array_filter([
-                '@context' => 'https://schema.org',
-                '@type' => 'LocalBusiness',
-                'name' => $siteSetting['site_name'] ?? 'Cloudlink IT Services',
-                'description' => $siteSetting['tagline'] ?? 'Powering Business Through Smart Technology',
-                'url' => config('app.url'),
-                'logo' => asset('images/og-default.jpg'),
-                'telephone' => $siteSetting['phone'] ?? '',
-                'email' => $siteSetting['email'] ?? '',
-                'address' => [
-                    '@type' => 'PostalAddress',
-                    'streetAddress' => $siteSetting['address'] ?? 'Plot 24, Kampala Road',
-                    'addressLocality' => 'Kampala',
-                    'addressCountry' => 'UG',
-                ],
-                'sameAs' => array_values(array_filter([
-                    $siteSetting['facebook'] ?? null,
-                    $siteSetting['twitter'] ?? null,
-                    $siteSetting['instagram'] ?? null,
-                    $siteSetting['linkedin'] ?? null,
-                ])),
-            ]), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!
-        }
+        {!! json_encode(array_filter([
+            '@context' => 'https://schema.org',
+            '@type' => 'LocalBusiness',
+            'name' => $siteSetting['site_name'] ?? 'Cloudlink IT Services',
+            'description' => $siteSetting['tagline'] ?? 'Powering Business Through Smart Technology',
+            'url' => config('app.url'),
+            'logo' => asset('images/og-default.jpg'),
+            'telephone' => $siteSetting['phone'] ?? '',
+            'email' => $siteSetting['email'] ?? '',
+            'address' => [
+                '@type' => 'PostalAddress',
+                'streetAddress' => $siteSetting['address'] ?? 'Plot 24, Kampala Road',
+                'addressLocality' => 'Kampala',
+                'addressCountry' => 'UG',
+            ],
+            'sameAs' => array_values(array_filter([
+                $siteSetting['facebook'] ?? null,
+                $siteSetting['twitter'] ?? null,
+                $siteSetting['instagram'] ?? null,
+                $siteSetting['linkedin'] ?? null,
+            ])),
+        ]), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
     </script>
     @stack('schema')
 
@@ -254,6 +252,28 @@
     </a>
     @endif
 
+    {{-- ── Chatbase Support Chatbot (sitewide floating widget) ── --}}
+    <div id="cl-chatbot-panel" class="hidden fixed bottom-24 right-6 z-50 w-[360px] max-w-[calc(100vw-2rem)] h-[560px] max-h-[calc(100vh-8rem)] bg-white shadow-2xl rounded-lg overflow-hidden border border-gray-200 flex flex-col">
+        <div class="flex items-center justify-between px-4 py-3 bg-sky-600 text-white">
+            <div class="flex items-center gap-2">
+                <i class="fas fa-headset"></i>
+                <span class="font-semibold text-sm">Cloudlink Support</span>
+            </div>
+            <button type="button" id="cl-chatbot-close" class="text-white/80 hover:text-white text-lg leading-none" aria-label="Close chat">&times;</button>
+        </div>
+        <iframe
+            src="https://www.chatbase.co/chatbot-iframe/I25rULrzys_C9qDzZDWTk"
+            width="100%"
+            style="height: 100%; min-height: 480px; border: 0;"
+            frameborder="0"
+            title="Cloudlink customer support chatbot"
+            class="flex-1"
+        ></iframe>
+    </div>
+    <button type="button" id="cl-chatbot-toggle" class="fixed bottom-24 right-6 z-50 bg-sky-600 hover:bg-sky-700 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition" title="Chat with support" aria-label="Open support chat">
+        <i class="fas fa-comments text-xl"></i>
+    </button>
+
     {{-- ── Scripts ── --}}
     <script>
         // Mobile menu toggle
@@ -261,6 +281,24 @@
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
         });
+
+        // Chatbot toggle
+        (function() {
+            var panel = document.getElementById('cl-chatbot-panel');
+            var openBtn = document.getElementById('cl-chatbot-toggle');
+            var closeBtn = document.getElementById('cl-chatbot-close');
+            if (!panel || !openBtn) return;
+            openBtn.addEventListener('click', function() {
+                panel.classList.toggle('hidden');
+                openBtn.classList.toggle('hidden');
+            });
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function() {
+                    panel.classList.add('hidden');
+                    openBtn.classList.remove('hidden');
+                });
+            }
+        })();
     </script>
     @stack('scripts')
 </body>
