@@ -201,11 +201,11 @@
                 <div>
                     <h4 class="text-lg font-heading font-bold text-white mb-4">Our Services</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="/services/it-consulting-services" class="hover:text-yellow-400 transition">IT Consulting</a></li>
+                        <li><a href="/services/it-consultancy-strategy" class="hover:text-yellow-400 transition">IT Consulting</a></li>
                         <li><a href="/services/smart-security-solutions" class="hover:text-yellow-400 transition">Smart Security</a></li>
-                        <li><a href="/services/software-development" class="hover:text-yellow-400 transition">Software Development</a></li>
-                        <li><a href="/services/solar-installations" class="hover:text-yellow-400 transition">Solar Installations</a></li>
-                        <li><a href="/services/e-receipting-efris-e-invoicing" class="hover:text-yellow-400 transition">EFRIS Solutions</a></li>
+                        <li><a href="/services/custom-software-development" class="hover:text-yellow-400 transition">Software Development</a></li>
+                        <li><a href="/services/solar-power-solutions" class="hover:text-yellow-400 transition">Solar Installations</a></li>
+                        <li><a href="/services/efris-integration-tax-solutions" class="hover:text-yellow-400 transition">EFRIS Solutions</a></li>
                     </ul>
                 </div>
 
