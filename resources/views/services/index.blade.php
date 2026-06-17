@@ -7,23 +7,25 @@
 
 @push('schema')
 <script type="application/ld+json">
-    {!! json_encode([
-        '@context' => 'https://schema.org',
-        '@type' => 'ItemList',
-        'name' => 'IT Services by Cloudlink',
-        'url' => route('services.index'),
-        'numberOfItems' => $services->count(),
-        'itemListElement' => $services->values()->map(fn ($svc, $idx) => [
-            '@type' => 'ListItem',
-            'position' => $idx + 1,
-            'item' => [
-                '@type' => 'Service',
-                'name' => $svc->title,
-                'url' => route('services.show', $svc->slug),
-                'description' => Str::limit($svc->description, 120),
-            ],
-        ])->all(),
-    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
+    {
+        !!json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'ItemList',
+            'name' => 'IT Services by Cloudlink',
+            'url' => route('services.index'),
+            'numberOfItems' => $services - > count(),
+            'itemListElement' => $services - > values() - > map(fn($svc, $idx) => [
+                '@type' => 'ListItem',
+                'position' => $idx + 1,
+                'item' => [
+                    '@type' => 'Service',
+                    'name' => $svc - > title,
+                    'url' => route('services.show', $svc - > slug),
+                    'description' => Str::limit($svc - > description, 120),
+                ],
+            ]) - > all(),
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!
+    }
 </script>
 @endpush
 
@@ -59,7 +61,8 @@
                     <h2 class="text-2xl font-heading font-extrabold text-gray-900 uppercase">{{ $service->title }}</h2>
                 </div>
                 <div class="w-12 h-1 bg-yellow-500 mb-4"></div>
-                <p class="text-gray-600 leading-relaxed mb-6">{{ $service->description }}</p>
+                {{-- Original: {{ $service->description }} — strip HTML tags from stored description --}}
+                <p class="text-gray-600 leading-relaxed mb-6">{{ Str::limit(strip_tags($service->description), 200) }}</p>
                 <a href="/services/{{ $service->slug }}" class="inline-block bg-sky-500 hover:bg-sky-600 text-white font-bold px-6 py-2 text-sm uppercase tracking-wide transition">Learn More</a>
             </div>
         </div>

@@ -7,13 +7,15 @@
 
 @push('schema')
 <script type="application/ld+json">
-    {!! json_encode([
-        '@context' => 'https://schema.org',
-        '@type' => 'CollectionPage',
-        'name' => 'Portfolio — Cloudlink IT Services',
-        'url' => route('portfolio.index'),
-        'description' => 'View our portfolio of successful IT projects across various industries.',
-    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
+    {
+        !!json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'CollectionPage',
+            'name' => 'Portfolio — Cloudlink IT Services',
+            'url' => route('portfolio.index'),
+            'description' => 'View our portfolio of successful IT projects across various industries.',
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!
+    }
 </script>
 @endpush
 
@@ -51,7 +53,8 @@
                     <div class="text-center opacity-0 group-hover:opacity-100 transition-all duration-300 px-6">
                         <span class="inline-block bg-yellow-500 text-gray-900 text-xs font-bold uppercase tracking-wide px-3 py-1 mb-2">{{ $project->category }}</span>
                         <h3 class="text-white font-heading font-bold text-xl uppercase mb-2">{{ $project->title }}</h3>
-                        <p class="text-gray-300 text-sm">{{ Str::limit($project->description, 80) }}</p>
+                        {{-- Original: {{ Str::limit($project->description, 80) }} — strip HTML tags so stored <p>...</p> doesn't render as literal text --}}
+                        <p class="text-gray-300 text-sm">{{ Str::limit(strip_tags($project->description), 80) }}</p>
                     </div>
                 </div>
             </div>

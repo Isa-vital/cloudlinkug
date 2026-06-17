@@ -86,7 +86,8 @@
                         <i class="{{ $service->icon_class ?? 'fas fa-cog' }} text-xl"></i>
                     </div>
                     <h3 class="text-xl font-heading font-bold text-gray-900 mb-2 uppercase">{{ $service->title }}</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-4">{{ Str::limit($service->description, 120) }}</p>
+                    {{-- Original: Str::limit($service->description, 120) — strip HTML first --}}
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4">{{ Str::limit(strip_tags($service->description), 120) }}</p>
                     <a href="/services/{{ $service->slug }}" class="text-sky-500 font-semibold text-sm hover:text-yellow-500 transition uppercase tracking-wide">Learn More <i class="fas fa-arrow-right ml-1"></i></a>
                 </div>
             </div>

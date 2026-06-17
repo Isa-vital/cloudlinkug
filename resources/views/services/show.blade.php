@@ -1,44 +1,48 @@
 @extends('layouts.public')
 
 @section('title', $service->title . ' — ' . ($siteSetting['site_name'] ?? 'Cloudlink IT Services'))
-@section('meta_description', Str::limit($service->description, 160))
+@section('meta_description', Str::limit(strip_tags($service->description), 160))
 @section('og_type', 'website')
 @section('og_image', $service->image_path ? asset('storage/' . $service->image_path) : ($serviceImages[$service->slug] ?? $defaultTechImage))
 @section('canonical', route('services.show', $service->slug))
 
 @push('schema')
 <script type="application/ld+json">
-    {!! json_encode([
-        '@context' => 'https://schema.org',
-        '@type' => 'Service',
-        'name' => $service->title,
-        'url' => route('services.show', $service->slug),
-        'description' => Str::limit($service->description, 250),
-        'provider' => [
-            '@type' => 'LocalBusiness',
-            'name' => $siteSetting['site_name'] ?? 'Cloudlink IT Services',
-            'url' => config('app.url'),
-            'telephone' => $siteSetting['phone'] ?? '',
-            'address' => [
-                '@type' => 'PostalAddress',
-                'streetAddress' => $siteSetting['address'] ?? '',
-                'addressLocality' => 'Kampala',
-                'addressCountry' => 'UG',
+    {
+        !!json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'Service',
+            'name' => $service - > title,
+            'url' => route('services.show', $service - > slug),
+            'description' => Str::limit($service - > description, 250),
+            'provider' => [
+                '@type' => 'LocalBusiness',
+                'name' => $siteSetting['site_name'] ?? 'Cloudlink IT Services',
+                'url' => config('app.url'),
+                'telephone' => $siteSetting['phone'] ?? '',
+                'address' => [
+                    '@type' => 'PostalAddress',
+                    'streetAddress' => $siteSetting['address'] ?? '',
+                    'addressLocality' => 'Kampala',
+                    'addressCountry' => 'UG',
+                ],
             ],
-        ],
-        'areaServed' => ['@type' => 'Country', 'name' => 'Uganda'],
-    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
+            'areaServed' => ['@type' => 'Country', 'name' => 'Uganda'],
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!
+    }
 </script>
 <script type="application/ld+json">
-    {!! json_encode([
-        '@context' => 'https://schema.org',
-        '@type' => 'BreadcrumbList',
-        'itemListElement' => [
-            ['@type' => 'ListItem', 'position' => 1, 'name' => 'Home', 'item' => config('app.url')],
-            ['@type' => 'ListItem', 'position' => 2, 'name' => 'Services', 'item' => route('services.index')],
-            ['@type' => 'ListItem', 'position' => 3, 'name' => $service->title, 'item' => route('services.show', $service->slug)],
-        ],
-    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
+    {
+        !!json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'BreadcrumbList',
+            'itemListElement' => [
+                ['@type' => 'ListItem', 'position' => 1, 'name' => 'Home', 'item' => config('app.url')],
+                ['@type' => 'ListItem', 'position' => 2, 'name' => 'Services', 'item' => route('services.index')],
+                ['@type' => 'ListItem', 'position' => 3, 'name' => $service - > title, 'item' => route('services.show', $service - > slug)],
+            ],
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!
+    }
 </script>
 @endpush
 
@@ -68,7 +72,8 @@
 
                 <h2 class="text-2xl font-heading font-extrabold text-gray-900 uppercase mb-4">Overview</h2>
                 <div class="w-12 h-1 bg-yellow-500 mb-6"></div>
-                <p class="text-gray-600 leading-relaxed mb-8">{{ $service->description }}</p>
+                {{-- Original: <p>{{ $service->description }}</p> — descriptions contain HTML, render as-is --}}
+                <div class="prose prose-gray max-w-none text-gray-600 leading-relaxed mb-8">{!! $service->description !!}</div>
 
                 <h3 class="text-xl font-heading font-bold text-gray-900 uppercase mb-4">Key Benefits</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">

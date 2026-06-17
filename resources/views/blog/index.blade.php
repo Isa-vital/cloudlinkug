@@ -7,18 +7,20 @@
 
 @push('schema')
 <script type="application/ld+json">
-    {!! json_encode([
-        '@context' => 'https://schema.org',
-        '@type' => 'Blog',
-        'name' => 'Cloudlink IT Services Blog',
-        'url' => route('blog.index'),
-        'description' => 'Latest insights on IT solutions, technology trends, and digital transformation.',
-        'publisher' => [
-            '@type' => 'Organization',
-            'name' => $siteSetting['site_name'] ?? 'Cloudlink IT Services',
-            'url' => config('app.url'),
-        ],
-    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
+    {
+        !!json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'Blog',
+            'name' => 'Cloudlink IT Services Blog',
+            'url' => route('blog.index'),
+            'description' => 'Latest insights on IT solutions, technology trends, and digital transformation.',
+            'publisher' => [
+                '@type' => 'Organization',
+                'name' => $siteSetting['site_name'] ?? 'Cloudlink IT Services',
+                'url' => config('app.url'),
+            ],
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!
+    }
 </script>
 @endpush
 
@@ -69,7 +71,8 @@
                     <h2 class="text-xl font-heading font-bold text-gray-900 uppercase mb-2 group-hover:text-sky-500 transition">
                         <a href="{{ route('blog.show', $post->slug) }}">{{ $post->title }}</a>
                     </h2>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-4">{{ Str::limit($post->excerpt ?? strip_tags($post->body), 120) }}</p>
+                    {{-- Original: {{ Str::limit($post->excerpt ?? strip_tags($post->body), 120) }} — also strip HTML from excerpt itself --}}
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4">{{ Str::limit(strip_tags($post->excerpt ?? $post->body), 120) }}</p>
                     <a href="{{ route('blog.show', $post->slug) }}" class="text-sky-500 font-semibold text-sm hover:text-yellow-500 transition uppercase tracking-wide">Read More <i class="fas fa-arrow-right ml-1"></i></a>
                 </div>
             </article>
