@@ -7,20 +7,18 @@
 
 @push('schema')
 <script type="application/ld+json">
-    {
-        !!json_encode([
-            '@context' => 'https://schema.org',
-            '@type' => 'Blog',
-            'name' => 'Cloudlink IT Services Blog',
-            'url' => route('blog.index'),
-            'description' => 'Latest insights on IT solutions, technology trends, and digital transformation.',
-            'publisher' => [
-                '@type' => 'Organization',
-                'name' => $siteSetting['site_name'] ?? 'Cloudlink IT Services',
-                'url' => config('app.url'),
-            ],
-        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!
-    }
+{!! json_encode([
+    '@context' => 'https://schema.org',
+    '@type' => 'Blog',
+    'name' => 'Cloudlink IT Services Blog',
+    'url' => route('blog.index'),
+    'description' => 'Latest insights on IT solutions, technology trends, and digital transformation.',
+    'publisher' => [
+        '@type' => 'Organization',
+        'name' => $siteSetting['site_name'] ?? 'Cloudlink IT Services',
+        'url' => config('app.url'),
+    ],
+], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
 </script>
 @endpush
 
